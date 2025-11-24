@@ -3,22 +3,27 @@
 
 #include <string>
 #include <vector>
+
+#include "Estacion.h"
+#include "Supervisor.h"
 using namespace std;
 
 class Zona {
 private:
     int id;
-    string nombre;
+    Supervisor* supervisor;
+    vector<Estacion*> estaciones;
 
 public:
-    Zona();
-    Zona(int _id, string _nombre);
+    Zona(int _id, Supervisor * sup);
 
     int getId();
-    string getNombre();
 
     void setId(int _id);
-    void setNombre(string _nombre);
+
+    Supervisor* getSupervisor();
+
+    void agregarEstacion(Estacion* e);
 
     void mostrar();
 };
