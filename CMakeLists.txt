@@ -22,4 +22,6 @@ add_executable(ProyectoProgra main.cpp
         Supervisor.h
         Supervisor.cpp
         Estacion.h
-        Estacion.cpp)
+        Estacion.cpp
+        Sistema.h
+        Sistema.cpp)
