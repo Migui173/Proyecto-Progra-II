@@ -26,9 +26,9 @@ int main() {
     cout << "\n----------------------------------------\n\n";
 
     // Crear supervisor
-    Supervisor s1("SUP01", "Carlos", "Lopez", "70223311", "987654321");
+    Supervisor* s1 = new Supervisor("SUP01", "Carlos", "Lopez", "70223311", "987654321");
     cout << ">> Supervisor creado:\n";
-    s1.mostrar();
+    s1->mostrar();
     cout << "\n----------------------------------------\n\n";
 
     // Crear bicicletas
@@ -69,6 +69,9 @@ int main() {
     delete b2;
 
     cout << "\n=== FIN DE PRUEBAS ===\n";
+
+    Zona z1(1, s1);
+    z1.mostrar();
     return 0;
 
     //REVISANDO SI ESTA TODO BIEN

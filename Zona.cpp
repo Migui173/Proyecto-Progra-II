@@ -24,6 +24,7 @@ void Zona::mostrar() {
     cout << "ZONA" << endl;
     cout << "  | ID         : " << id << endl;
     cout << "  | Supervisor : " << supervisor->getNombre() << endl;
+    cout << "  | Estaciones : " << estaciones.size()<<endl;
     cout << "-----------------------------\n";
 }
 
