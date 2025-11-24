@@ -9,8 +9,8 @@ private:
 
 public:
     BiMecanica(string _cod, int cambios);
-    void mostrar() override;
-    float costoxKm(float km) override;
+    void mostrar() const override;
+    float costoxKm(float km) const override;
 };
 
 #endif //PROYECTOPROGRA_BIMECANICA_H

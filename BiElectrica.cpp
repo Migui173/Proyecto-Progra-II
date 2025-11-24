@@ -7,11 +7,11 @@ BiElectrica::BiElectrica(string _cod, float bat) : Bicicleta(_cod) {
     capBateria = bat;
 }
 
-void BiElectrica::mostrar() {
+void BiElectrica::mostrar() const {
     Bicicleta::mostrar();
     cout << "  | Capacidad Batería: " << capBateria << " AMP" << endl;
 }
 
-float BiElectrica::costoxKm(float km) {
-    return 4 * km;
+float BiElectrica::costoxKm(float km) const {
+    return 4.0f * km;
 }

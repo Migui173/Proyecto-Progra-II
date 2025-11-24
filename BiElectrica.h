@@ -9,8 +9,8 @@ private:
 
 public:
     BiElectrica(string _cod, float bat);
-    void mostrar() override;
-    float costoxKm(float km) override;
+    void mostrar() const override;
+    float costoxKm(float km) const override;
 };
 
 #endif //PROYECTOPROGRA_BIELECTRICA_H

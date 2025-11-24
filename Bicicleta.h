@@ -14,12 +14,13 @@ public:
     Bicicleta(string _cod);
     virtual ~Bicicleta() = default;
 
-    bool isElectrico();
+    string getCodigo() const;
+    bool isElectrico() const;
     void camMec();
     void camElec();
 
-    virtual void mostrar();
-    virtual float costoxKm(float km) = 0;  // método abstracto
+    virtual void mostrar() const;
+    virtual float costoxKm(float km) const = 0;  // método abstracto
 };
 
 #endif //PROYECTOPROGRA_BICICLETA_H

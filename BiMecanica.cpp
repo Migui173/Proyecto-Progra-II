@@ -7,11 +7,11 @@ BiMecanica::BiMecanica(string _cod, int cambios) : Bicicleta(_cod) {
     cantCambios = cambios;
 }
 
-void BiMecanica::mostrar() {
+void BiMecanica::mostrar() const {
     Bicicleta::mostrar();
     cout << "  | Cantidad de Cambios: " << cantCambios << endl;
 }
 
-float BiMecanica::costoxKm(float km) {
-    return 3 * km;
+float BiMecanica::costoxKm(float km) const{
+    return 3.0f * km;
 }

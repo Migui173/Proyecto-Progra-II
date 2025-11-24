@@ -16,20 +16,22 @@ private:
     double latitud;
     double longitud;
     int capacidad;
+    int zona;
     vector<Bicicleta*> bicicletas;
 
 public:
     // Constructor
     Estacion(int _id, const string& _nombre,
-             double _lat, double _lon, int _cap);
+             double _lat, double _lon, int _cap, int _zona);
 
     // Getters
-    int getId();
+    int getID();
     string getNombre();
     double getLatitud();
     double getLongitud();
     int getCapacidad();
     int getOcupadas();
+    int getZona();
 
     // Cantidad por tipo
     int getCantElectricas();

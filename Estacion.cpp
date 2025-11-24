@@ -4,12 +4,13 @@ using namespace std;
 
 // Constructor
 Estacion::Estacion(int _id, const string& _nombre,
-                   double _lat, double _lon, int _cap)
+                   double _lat, double _lon, int _cap, int _zona)
 {
     id = _id;
     nombre = _nombre;
     latitud = _lat;
     longitud = _lon;
+    zona = _zona;
 
     if (_cap == 10 || _cap == 20 || _cap == 30)
         capacidad = _cap;
@@ -28,12 +29,13 @@ Estacion::Estacion(int _id, const string& _nombre,
 
 /* ===== GETTERS ===== */
 
-int Estacion::getId() { return id; }
+int Estacion::getID() { return id; }
 string Estacion::getNombre() { return nombre; }
 double Estacion::getLatitud() { return latitud; }
 double Estacion::getLongitud() { return longitud; }
 int Estacion::getCapacidad() { return capacidad; }
 int Estacion::getOcupadas() { return bicicletas.size(); }
+int Estacion::getZona() { return zona;}
 
 /* ===== CANTIDADES POR TIPO ===== */
 

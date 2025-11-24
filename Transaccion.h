@@ -7,11 +7,14 @@ using namespace std;
 
 #include "usuario.h"
 #include "Bicicleta.h"
+#include "Estacion.h"
 
 class Transaccion {
 private:
     Usuario* cli;
     Bicicleta* bici;
+    Estacion* origen;
+    Estacion* destino;
 
     string idUsuario;
     string idBicicleta;
@@ -24,8 +27,8 @@ private:
 public:
     Transaccion(Usuario* _cli,
                 Bicicleta* _bici,
-                int _idEstacionA,
-                int _idEstacionB,
+                Estacion* _origen,
+                Estacion* _destino,
                 int _tiempoSeg,
                 float _distanciaKm);
 

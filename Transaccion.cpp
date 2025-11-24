@@ -5,8 +5,8 @@ using namespace std;
 
 Transaccion::Transaccion(Usuario* _cli,
                          Bicicleta* _bici,
-                         int _idEstacionA,
-                         int _idEstacionB,
+                         Estacion* _origen,
+                         Estacion* _destino,
                          int _tiempoSeg,
                          float _distanciaKm)
 {
@@ -16,8 +16,10 @@ Transaccion::Transaccion(Usuario* _cli,
     idUsuario   = cli->getID();
     idBicicleta = "SIN_CODIGO";   // puedes luego cambiarlo si asignas códigos reales
 
-    idEstacionA = _idEstacionA;
-    idEstacionB = _idEstacionB;
+    origen = _origen;
+    destino = _destino;
+    idEstacionA = origen->getID();
+    idEstacionB = destino->getID();
     tiempoSeg   = _tiempoSeg;
     distanciaKm = _distanciaKm;
     monto       = 0;
