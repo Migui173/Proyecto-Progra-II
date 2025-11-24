@@ -18,7 +18,7 @@ public:
     Zona(int _id, Supervisor * sup);
 
     int getId();
-    vector<Estacion*> getEstaciones();
+    vector<Estacion*>& getEstaciones();
     void setId(int _id);
 
     Supervisor* getSupervisor();

@@ -8,12 +8,13 @@
 #include "BiMecanica.h"
 #include "Estacion.h"
 #include "Transaccion.h"
+#include "Sistema.h"
 
 using namespace std;
 
 int main() {
     srand(time(NULL));
-    cout << "=== PRUEBA DE SISTEMA DE BICICLETAS ===\n\n";
+    /*cout << "=== PRUEBA DE SISTEMA DE BICICLETAS ===\n\n";
 
     // Crear usuarios
     Usuario u1("Bryhan", "Gonzales");
@@ -71,7 +72,13 @@ int main() {
     cout << "\n=== FIN DE PRUEBAS ===\n";
 
     Zona z1(1, s1);
-    z1.mostrar();
+    z1.mostrar();*/
+    Sistema sistema;
+    sistema.inicializarZonas();
+    sistema.inicializarEstaciones();
+    sistema.inicializarUsuarios(500);
+
+
     return 0;
 
     //REVISANDO SI ESTA TODO BIEN
