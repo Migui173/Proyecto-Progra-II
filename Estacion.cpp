@@ -80,5 +80,6 @@ void Estacion::mostrar() {
     cout << "  | Ocupadas  : " << bicicletas.size() << endl;
     cout << "  | Electricas: " << getCantElectricas() << endl;
     cout << "  | Mecanicas : " << getCantMecanicas() << endl;
+    cout << "  | Zona      : " << zona <<endl;
     cout << "-----------------------------------------\n";
 }
