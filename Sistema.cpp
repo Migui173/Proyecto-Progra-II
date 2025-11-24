@@ -19,7 +19,7 @@ Sistema::~Sistema() {
     for (int i=0;i<transacciones.size();i++) {
         delete transacciones[i];
     }
-    }
+}
 void Sistema::inicializarZonas() {
     for (int i=0; i<=8; i++) {
         // CREANDO SUPERVISOR

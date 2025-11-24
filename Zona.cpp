@@ -12,7 +12,9 @@ Zona::Zona(int _id, Supervisor * sup) {
 
 int Zona::getId() { return id; }
 Supervisor *Zona::getSupervisor() {return supervisor;}
-
+vector<Estacion *>& Zona::getEstaciones() {
+    return estaciones;
+}
 
 /* ===== SETTERS ===== */
 
