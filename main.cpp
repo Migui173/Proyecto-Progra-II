@@ -42,14 +42,15 @@ int main() {
     cout << "\n----------------------------------------\n\n";
 
     // Crear estación
-    Estacion e1(1, "Estacion Central", 12.35, 23.9, 10);
+    Estacion * e1 = new Estacion(1, "Estacion Central", 12.35, 23.9, 10,2);
+    Estacion * e2 = new Estacion(2, "Estacion Central 1 ", 15.86, 25.9, 10,7);
     cout << ">> Datos de estación:\n";
-    e1.mostrar();
+    e1->mostrar();
     cout << "\n----------------------------------------\n\n";
 
     // Crear transacción
     cout << ">> Creando transacción...\n";
-    Transaccion t1(&u1, b2, 2, 7, 1500, 4.0f);
+    Transaccion t1(&u1, b2, e1, e2, 1500, 4.0f);
 
     t1.calcularTarifa();
     t1.mostrar();
