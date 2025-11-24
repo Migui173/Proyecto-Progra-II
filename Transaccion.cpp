@@ -1,6 +1,7 @@
 #include "Transaccion.h"
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 Transaccion::Transaccion(Usuario* _cli,
@@ -33,17 +34,15 @@ float Transaccion::calcularTarifa() {
 
     /* ---------------- COSTO POR RECORRIDO ---------------- */
     if (!mismaEstacion) {
-        float costoBaseDist = 3.0f * distanciaKm;
+        total += bici->costoxKm(distanciaKm);
+        //float costoBaseDist = 3.0f * distanciaKm;
 
-        if (bici->isElectrico()) 
-            costoBaseDist += distanciaKm;
-
-        total += costoBaseDist;
-
+        int zonaA = origen ? origen->getZona() : -1;
+        int zonaB = destino ? destino->getZona() : -1;
         bool ladoA_1_4 = (idEstacionA >= 1 && idEstacionA <= 4);
         bool ladoB_1_4 = (idEstacionB >= 1 && idEstacionB <= 4);
 
-        if (ladoA_1_4 != ladoB_1_4)
+        if ((zonaA!= -1 and zonaB!= -1) and (ladoA_1_4 != ladoB_1_4))
             total += 5.0f;
     }
     else {
@@ -53,7 +52,7 @@ float Transaccion::calcularTarifa() {
 
     /* ---------------- COSTO ADICIONAL POR TIEMPO ---------------- */
     if (tiempoMin > 20.0f) {
-        float extraMin = tiempoMin - 20.0f;
+        float extraMin = (int)ceil(tiempoMin - 20.0f);
         total += extraMin * 1.0f;
     }
 
@@ -61,10 +60,9 @@ float Transaccion::calcularTarifa() {
 
     // Descuento por zona
     int zonaUsuario = cli->getZona();
-    bool coincideZona =
-        (zonaUsuario == idEstacionA) || (zonaUsuario == idEstacionB);
-
-    if (coincideZona)
+    int zonaO = origen ? origen->getZona() : -1;
+    int zonaD = destino ? destino->getZona() : -1;
+    if (zonaUsuario == zonaD || zonaUsuario == zonaO )
         total *= 0.90f;
 
     // Descuento por tarjeta VISA
@@ -72,7 +70,7 @@ float Transaccion::calcularTarifa() {
     if (tarj == "visa" || tarj == "Visa" || tarj == "VISA")
         total *= 0.95f;
 
-    monto = total;
+    monto = floor(total * 100.0f + 0.5f) / 100.0f ;
     return monto;
 }
 
@@ -84,7 +82,7 @@ void Transaccion::mostrar() {
     cout << "  | Estacion B     : " << idEstacionB << endl;
     cout << "  | Tiempo (seg)   : " << tiempoSeg << endl;
     cout << "  | Distancia (km) : " << distanciaKm << endl;
-    cout << "  | Monto (S/)     : " << monto << endl;
+    cout << "  | Monto          : S/" << fixed <<setprecision(2)<<monto << endl;
     cout << "  | Vecino         : " << (cli->getEsVecino() ? "Si" : "No") << endl;
     cout << "  | Tarjeta        : " << cli->getTarjetaPago() << endl;
     cout << "  | Tipo Bici      : "
