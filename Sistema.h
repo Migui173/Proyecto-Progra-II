@@ -21,6 +21,15 @@ public:
     void simularDia(int cantViajes);
     void reporteFinal();
 
+    // FUNCIONES AUXILIARES
+    Usuario* eligirUsuario();
+    Estacion* eligirEstacionOrigen(Usuario *u);
+    Estacion* eligirEstacionDestino(Estacion *origen, Usuario *u);
+    Bicicleta* elegirBicicleta(Estacion* origen);
+    int generarTiempo();
+    float generarDistancia(int tiempo);
+    void moverBicicleta(Estacion* origen, Estacion* destino, Bicicleta*bici);
+
 };
 
 #endif //PROYECTOPROGRA_SISTEMA_H

@@ -20,7 +20,7 @@ vector<Estacion *>& Zona::getEstaciones() {
 
 void Zona::setId(int _id) { id = _id; }
 
-/* ===== MOSTRAR ===== */
+/* ===== MOSTRAR =====
 
 void Zona::mostrar() {
     cout << "ZONA" << endl;
@@ -28,6 +28,10 @@ void Zona::mostrar() {
     cout << "  | Supervisor : " << supervisor->getNombre() << endl;
     cout << "  | Estaciones : " << estaciones.size()<<endl;
     cout << "-----------------------------\n";
+}*/
+
+void Zona::mostrar() {
+    cout <<"ZONA "<<id<<"-> Supervisor : "<<supervisor->getNombre()<<"- Estaciones : "<<estaciones.size()<< endl;
 }
 
 void Zona::agregarEstacion(Estacion *e) {

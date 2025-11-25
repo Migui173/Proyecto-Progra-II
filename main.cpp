@@ -73,10 +73,13 @@ int main() {
 
     Zona z1(1, s1);
     z1.mostrar();*/
+
+    cout<<"--- NUEVO SISTEMA DE BICICLETAS - BARRANCO ---\n";
     Sistema sistema;
     sistema.inicializarZonas();
     sistema.inicializarEstaciones();
-    sistema.inicializarUsuarios(500);
+    sistema.inicializarUsuarios(5);
+    sistema.simularDia(2);
 
 
     return 0;

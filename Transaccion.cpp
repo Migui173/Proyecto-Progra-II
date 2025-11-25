@@ -15,7 +15,7 @@ Transaccion::Transaccion(Usuario* _cli,
     bici = _bici;
 
     idUsuario   = cli->getID();
-    idBicicleta = "SIN_CODIGO";   // puedes luego cambiarlo si asignas códigos reales
+    idBicicleta = bici->getCodigo();
 
     origen = _origen;
     destino = _destino;
@@ -39,10 +39,10 @@ float Transaccion::calcularTarifa() {
 
         int zonaA = origen ? origen->getZona() : -1;
         int zonaB = destino ? destino->getZona() : -1;
-        bool ladoA_1_4 = (idEstacionA >= 1 && idEstacionA <= 4);
-        bool ladoB_1_4 = (idEstacionB >= 1 && idEstacionB <= 4);
+        bool ladoA_1_4 = (zonaA >= 1 && zonaA <= 4);
+        bool ladoB_1_4 = (zonaB >= 1 && zonaB<= 4);
 
-        if ((zonaA!= -1 and zonaB!= -1) and (ladoA_1_4 != ladoB_1_4))
+        if (ladoA_1_4 != ladoB_1_4)
             total += 5.0f;
     }
     else {
