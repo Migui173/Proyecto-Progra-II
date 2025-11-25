@@ -60,7 +60,7 @@ void Sistema::inicializarEstaciones() {
 
 void Sistema::inicializarUsuarios(int cantidad) {
     cout<<"[OK] Creando usuarios..."<<endl;
-    for (int i=0; i<=cantidad; i++) {
+    for (int i=1; i<=cantidad; i++) {
         string nombre = "Usuario-" + to_string(cantidad);
         string apellido = "Ape_" + to_string(cantidad);
         Usuario *u = new Usuario(nombre, apellido);
@@ -68,10 +68,18 @@ void Sistema::inicializarUsuarios(int cantidad) {
         usuarios.push_back(u);
     }
     cout<<"[OK] " <<cantidad<< " usuarios correctamente.\n";
+
 }
 
 void Sistema::simularDia(int cantViajes) {
     cout << "\n[SIMULACION] Iniciando simulación del día...\n";
+
+    ofstream archivo("transacciones.txt", ios::app);
+    if (!archivo.is_open()) {
+        cerr << "[ERROR] No se pudo abrir transacciones.txt para escritura.\n";
+        return;
+    }
+
     for (int v=1; v<=cantViajes; v++) {
         Usuario* user = eligirUsuario();
 
@@ -91,9 +99,12 @@ void Sistema::simularDia(int cantViajes) {
         transacciones.push_back(t);
 
         moverBicicleta(origen,destino,bici);
+        t->mostrar();
 
-        cout << "Viaje #" << v << " completado. Monto: S/" << t->getMonto() << endl;
+        t->guardarEnArchivo(archivo);
+        //cout << "Viaje #" << v << " completado. Monto: S/" << t->getMonto() << endl;
     }
+    archivo.close();
     cout << "[SIMULACION] Día completado exitosamente.\n";
 }
 

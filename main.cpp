@@ -79,7 +79,7 @@ int main() {
     sistema.inicializarZonas();
     sistema.inicializarEstaciones();
     sistema.inicializarUsuarios(5);
-    sistema.simularDia(2); // INGRESAR CANTIDAD DE VIAJES
+    sistema.simularDia(20)  ; // INGRESAR CANTIDAD DE VIAJES
 
 
     return 0;

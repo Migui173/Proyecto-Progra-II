@@ -42,7 +42,7 @@ float Transaccion::calcularTarifa() {
         bool ladoA_1_4 = (zonaA >= 1 && zonaA <= 4);
         bool ladoB_1_4 = (zonaB >= 1 && zonaB<= 4);
 
-        if (ladoA_1_4 != ladoB_1_4)
+        if (zonaA!= -1 and zonaB!= -1 and (ladoA_1_4 != ladoB_1_4) )
             total += 5.0f;
     }
     else {
@@ -87,7 +87,34 @@ void Transaccion::mostrar() {
     cout << "  | Tarjeta        : " << cli->getTarjetaPago() << endl;
     cout << "  | Tipo Bici      : "
          << (bici->isElectrico() ? "Electrica" : "Mecanica") << endl;
+    //cout << "-----------------------------------------\n";
+
+    float tiempoMin = tiempoSeg / 60.0f;
+    bool excedioTiempo = (tiempoMin > 20.0f);
+
+    int zonaA = origen ? origen->getZona() : -1;
+    int zonaB = destino ? destino->getZona() : -1;
+    bool cruzoZona = false;
+
+    if (zonaA != -1 && zonaB != -1) {
+        bool ladoA_1_4 = (zonaA >= 1 && zonaA <= 4);
+        bool ladoB_1_4 = (zonaB >= 1 && zonaB <= 4);
+        cruzoZona = (ladoA_1_4 != ladoB_1_4);
+    }
+
+    int zonaUsuario = cli->getZona();
+    bool descZona = (zonaUsuario == zonaA || zonaUsuario == zonaB);
+
+    string tarj = cli->getTarjetaPago();
+    bool descVisa = (tarj == "visa" || tarj == "Visa" || tarj == "VISA");
+
+    cout << "  | Penalidad cruce zona        : " << (cruzoZona ? "SI" : "NO") << endl;
+    cout << "  | Penalidad por sobretiempo   : " << (excedioTiempo ? "SI" : "NO") << endl;
+    cout << "  | Descuento por zona usuario  : " << (descZona ? "SI" : "NO") << endl;
+    cout << "  | Descuento por tarjeta VISA  : " << (descVisa ? "SI" : "NO") << endl;
+
     cout << "-----------------------------------------\n";
+
 }
 
 void Transaccion::guardarEnArchivo(ofstream &archivo) {
@@ -96,7 +123,8 @@ void Transaccion::guardarEnArchivo(ofstream &archivo) {
             << idEstacionA << ","
             << idEstacionB << ","
             << tiempoSeg   << ","
-            << monto       << "\n";
+            << fixed << setprecision(2) << monto << ","
+            << cli->getTarjetaPago() << "\n";
 }
 
 float Transaccion::getMonto() const {
