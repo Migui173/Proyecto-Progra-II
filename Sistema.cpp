@@ -45,8 +45,8 @@ void Sistema::inicializarEstaciones() {
         for (int j=1; j<=cant; j++) {
             int idEstacion = zonaID *100 +  j; // id unico
             string nombre = "Estacion " + to_string(zonaID)+ "-" + to_string(j); //nombre
-            double lat = -12.0 + (rand() % 1000) / 1000.0;
-            double lon = -77 + (rand() % 1000) / 1000.0;
+            double lat = -12.0 + (rand() % 1000) / 1000.0; //latitud
+            double lon = -77 + (rand() % 1000) / 1000.0; //longitud
 
             int capacidad = (rand() % 3 + 1) *10;
 
