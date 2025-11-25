@@ -78,9 +78,9 @@ int main() {
     Sistema sistema;
     sistema.inicializarZonas();
     sistema.inicializarEstaciones();
-    sistema.inicializarUsuarios(5);
-    sistema.simularDia(20)  ; // INGRESAR CANTIDAD DE VIAJES
-
+    sistema.inicializarUsuarios(20);
+    //sistema.simularDia()  ; // INGRESAR CANTIDAD DE VIAJES
+    sistema.menu();
 
     return 0;
 

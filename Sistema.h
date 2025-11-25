@@ -29,6 +29,7 @@ public:
     int generarTiempo();
     float generarDistancia(int tiempo);
     void moverBicicleta(Estacion* origen, Estacion* destino, Bicicleta*bici);
+    void menu();
 
 };
 

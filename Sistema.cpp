@@ -21,12 +21,19 @@ Sistema::~Sistema() {
     }
 }
 void Sistema::inicializarZonas() {
+
+    vector<string> nombre = {
+        "Santiago", "Valentino", "Matias", "Diego", "Marcos",
+        "Julian", "Ricardo", "Rodrigo"};
+    vector<string> apellido = {
+        "Herrera", "Castillo" , "Vargas" , "Mendoza" ,"Silva", "Rojas",
+        "Torres", "Guzman"};
     for (int i=1; i<=8; i++) {
         // CREANDO SUPERVISOR
         Supervisor*sup = new Supervisor(
             "SUP0"+ to_string(i),
-            "Nombre" + to_string(i),
-            "Apellido" + to_string(i),
+            nombre[i-1],
+            apellido[i-1],
             CrearDNI(),
             "99999999" + to_string(i)
             );
@@ -61,8 +68,8 @@ void Sistema::inicializarEstaciones() {
 void Sistema::inicializarUsuarios(int cantidad) {
     cout<<"[OK] Creando usuarios..."<<endl;
     for (int i=1; i<=cantidad; i++) {
-        string nombre = "Usuario-" + to_string(cantidad);
-        string apellido = "Ape_" + to_string(cantidad);
+        string nombre = "Usuario-" + to_string(i);
+        string apellido = "Ape_" + to_string(i);
         Usuario *u = new Usuario(nombre, apellido);
 
         usuarios.push_back(u);
@@ -296,4 +303,110 @@ void Sistema::moverBicicleta(Estacion *origen, Estacion *destino, Bicicleta *bic
              << ") está llena. Bici devuelta a estación origen." << endl;
     }
 }
+
+void Sistema::menu() {
+    int opcion;
+    do {
+        cout << "\n======= MENU DEL SISTEMA DE BICICLETAS =======" << endl;
+        cout << "1. Lista de Zonas" << endl;
+        cout << "2. Lista de Estaciones por Zona" << endl;
+        cout << "3. Lista de Usuarios" << endl;
+        cout << "4. Registrar Usuario" << endl;
+        cout << "5. Simular un Dia Completo" << endl;
+        cout << "6. Mostrar Todas las Transacciones" << endl;
+        cout << "7. Guardar Transacciones del Dia" << endl;
+        cout << "8. Salir" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch(opcion) {
+
+            case 1: {
+                cout << "\n--- ZONAS ---\n";
+                for (Zona* z : zonas) {
+                    z->mostrar();
+                }
+                break;
+            }
+
+            case 2: {
+                int idz;
+                cout << "Ingrese ID de zona (1-8): ";
+                cin >> idz;
+
+                for (Zona* z : zonas) {
+                    if (z->getId() == idz) {
+                        cout << "\n--- ESTACIONES DE ZONA " << idz << " ---\n";
+                        for (Estacion* e : z->getEstaciones()) {
+                            e->mostrar();
+                        }
+                    }
+                }
+                break;
+            }
+
+            case 3: {
+                cout << "\n--- USUARIOS ---\n";
+                for (Usuario* u : usuarios) {
+                    u->imp(); // Tu método imprime todo
+                    cout << endl;
+                }
+                break;
+            }
+
+            case 4: {
+                string nom, ape;
+                cout << "Ingrese nombre: ";
+                cin >> nom;
+                cout << "Ingrese apellido: ";
+                cin >> ape;
+
+                Usuario* u = new Usuario(nom, ape);
+                usuarios.push_back(u);
+
+                cout << "Usuario registrado correctamente.\n";
+                break;
+            }
+
+            case 5: {
+                int cantidad;
+                cout << "¿Cuantos viajes desea simular hoy?: ";
+                cin >> cantidad;
+
+                simularDia(cantidad);
+                break;
+            }
+
+            case 6: {
+                cout << "\n--- TRANSACCIONES ---\n";
+                for (Transaccion* t : transacciones) {
+                    t->mostrar();
+                }
+                break;
+            }
+
+            case 7: {
+                ofstream archivo("transacciones.txt", ios::app);
+                if (!archivo.is_open()) {
+                    cout << "[ERROR] No se pudo abrir el archivo." << endl;
+                } else {
+                    for (Transaccion* t : transacciones) {
+                        t->guardarEnArchivo(archivo);
+                    }
+                    cout << "Transacciones guardadas en transacciones.txt\n";
+                    archivo.close();
+                }
+                break;
+            }
+
+            case 8:
+                cout << "Saliendo del sistema..." << endl;
+                break;
+
+            default:
+                cout << "Opcion invalida." << endl;
+        }
+
+    } while (opcion != 8);
+};
 
