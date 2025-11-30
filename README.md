@@ -9,3 +9,7 @@ Enunciado : [PDF](https://github.com/Migui173/Proyecto-Progra-II/blob/main/Proye
 - Cada clase modelada tiene su archivo `.h` y .`cpp`
 - Ademas se presenta los archivos `Sistema.h` y `Sistema.cpp`, donde se presenta toda la lógica y presentacion del sistema.
 - Y el `main.cpp` donde se ejecuta el precargado y el menu.
+
+## VIDEO
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UqPX3ieszE8?si=AZIwkFkUmCy_1UOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
