@@ -24,5 +24,4 @@ add_executable(ProyectoProgra main.cpp
         Estacion.h
         Estacion.cpp
         Sistema.h
-        Sistema.cpp
-        leertxt.cpp)
+        Sistema.cpp)
