@@ -11,5 +11,4 @@ Enunciado : [PDF](https://github.com/Migui173/Proyecto-Progra-II/blob/main/Proye
 - Y el `main.cpp` donde se ejecuta el precargado y el menu.
 
 ## VIDEO
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UqPX3ieszE8?si=AZIwkFkUmCy_1UOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+VIDEO DE INSTALCIÓN:[VIDEO](https://www.youtube.com/watch?v=UqPX3ieszE8)
