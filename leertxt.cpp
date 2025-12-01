@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
+#include "colors.h"
 
 using namespace std;
 
@@ -16,11 +17,8 @@ int main() {
     }
 
     string linea;
-    double sumaMec = 0.0;
-    double sumaEle = 0.0;
-    double sumaMastercard = 0.0;
-    double sumavisa = 0.0;
-    double sumaamericanexpress = 0.0;
+    double sumaMec = 0.0; double sumaEle = 0.0;
+    double sumaMastercard = 0.0; double sumavisa = 0.0; double sumaamericanexpress = 0.0;
 
     while (getline(archivo, linea)) {
         stringstream ss(linea);
@@ -70,12 +68,14 @@ int main() {
     }
 
     archivo.close();
+    cout << ROJO <<"======= REPORTE POR TIPO DE BICICLETA =======" << endl<<RESET;
+    cout << AZUL <<"Tipo : Electrica -> Monto total : " <<RESET<<VERDE<<"S/"<< sumaEle << endl<<RESET;
+    cout << AZUL <<"Tipo : Mecanica  -> Monto total : " <<RESET<<VERDE<<"S/"<< sumaMec << endl<<RESET;
+    cout << ROJO << string(45,'=')<<endl<<RESET<<endl;
 
-    cout << "================================================================" << endl;
-    cout << "el precio total para las bicicletas electricas: " << sumaEle << endl;
-    cout << "el precio total para las bicicletas mecanicas: " << sumaMec << endl;
-    cout << "el precio total por el uso de MasterCard: "<< sumaMastercard << endl;
-    cout << "el precio total por el uso de Visa: "<< sumavisa << endl;
-    cout << "el precio total por el uso de American Express: "<< sumaamericanexpress<< endl;
-    cout << "================================================================" << endl;
+    cout << ROJO <<"======== REPORTE POR TIPO DE TARJETA ========" << endl<<RESET;
+    cout << AZUL <<"American Express -> Monto Total : "<<RESET<<VERDE<<"S/"<<sumaamericanexpress<< endl<<RESET;
+    cout << AZUL <<"MasterCard       -> Monto Total : "<<RESET<<VERDE<<"S/"<< sumaMastercard << endl<<RESET;
+    cout << AZUL <<"Visa             -> Monto Total : "<<RESET<<VERDE<<"S/"<< sumavisa << endl<<RESET;
+    cout << ROJO << string(45,'=')<<endl<<RESET;
 }
