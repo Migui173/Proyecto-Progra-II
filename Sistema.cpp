@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "Sistema.h"
 #include <ctime>
+#include "colors.h"
 using namespace std;
 
 Sistema::Sistema() {
@@ -23,10 +24,10 @@ Sistema::~Sistema() {
 void Sistema::inicializarZonas() {
 
     vector<string> nombre = {
-        "Santiago", "Valentino", "Matias", "Diego", "Marcos",
+        "Santiago", "Valentin", "Matias", "Diego", "Marcos",
         "Julian", "Ricardo", "Rodrigo"};
     vector<string> apellido = {
-        "Herrera", "Castillo" , "Vargas" , "Mendoza" ,"Silva", "Rojas",
+        "Herron", "Castro" , "Vargas" , "Mendoza" ,"Silva", "Rojas",
         "Torres", "Guzman"};
     for (int i=1; i<=8; i++) {
         // CREANDO SUPERVISOR
@@ -41,11 +42,11 @@ void Sistema::inicializarZonas() {
         zonas.push_back(z);
         //zonas[i-1]->mostrar();
     }
-    cout<<"[OK] Zonas inicializadas correctamente.\n";
+    cout<<VERDE<<"[OK] Zonas inicializadas correctamente.\n"<<RESET;
 }
 
 void Sistema::inicializarEstaciones() {
-    cout<<"[OK] Iniciando creación de estaciones...\n";
+    cout<<VERDE<<"[OK] Iniciando creación de estaciones...\n"<<RESET;
     for (Zona* z : zonas) {
         int zonaID = z->getId();
         int cant = rand() % 3 + 2; //cant. de estac. (2-4)
@@ -62,11 +63,11 @@ void Sistema::inicializarEstaciones() {
             z->agregarEstacion(e);
         }
     }
-    cout<<"Todas las estaciones fueron creadas correctamente.\n";
+    cout<<VERDE<<"Todas las estaciones fueron creadas correctamente.\n"<< RESET;
 }
 
 void Sistema::inicializarUsuarios(int cantidad) {
-    cout<<"[OK] Creando usuarios..."<<endl;
+    cout<<AMARILLO<<"[OK] Creando usuarios..."<<endl<<RESET;
     for (int i=1; i<=cantidad; i++) {
         string nombre = "Usuario-" + to_string(i);
         string apellido = "Ape_" + to_string(i);
@@ -74,7 +75,7 @@ void Sistema::inicializarUsuarios(int cantidad) {
 
         usuarios.push_back(u);
     }
-    cout<<"[OK] " <<cantidad<< " usuarios correctamente.\n";
+    cout<<VERDE<<"[OK] " <<cantidad<< " usuarios correctamente.\n"<<RESET;
 
 }
 
@@ -112,7 +113,7 @@ void Sistema::simularDia(int cantViajes) {
         //cout << "Viaje #" << v << " completado. Monto: S/" << t->getMonto() << endl;
     }
     archivo.close();
-    cout << "[SIMULACION] Día completado exitosamente.\n";
+    cout << VERDE <<"[SIMULACION] Día completado exitosamente.\n"<<RESET;
 }
 
 Usuario *Sistema::eligirUsuario() {
@@ -299,15 +300,15 @@ void Sistema::moverBicicleta(Estacion *origen, Estacion *destino, Bicicleta *bic
 
     if (!pudoAgregar) {
         origen->agregarBicicleta(bici);
-        cout<<"[ADVERTENCIA] La estación destino (" << destino->getID()
-             << ") está llena. Bici devuelta a estación origen." << endl;
+        cout<<ROJO<<"[ADVERTENCIA] La estación destino (" << destino->getID()
+             << ") está llena. Bici devuelta a estación origen." << endl<<RESET;
     }
 }
 
 void Sistema::menu() {
     int opcion;
     do {
-        cout << "\n======= MENU DEL SISTEMA DE BICICLETAS =======" << endl;
+        cout <<AZUL<< "\n======= MENU DEL SISTEMA DE BICICLETAS =======" << endl;
         cout << "1. Lista de Zonas" << endl;
         cout << "2. Lista de Estaciones por Zona" << endl;
         cout << "3. Lista de Usuarios" << endl;
@@ -316,16 +317,19 @@ void Sistema::menu() {
         cout << "6. Mostrar Todas las Transacciones" << endl;
         cout << "7. Guardar Transacciones del Dia" << endl;
         cout << "8. Salir" << endl;
+        cout<< string(46, '=')<<endl<<RESET;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch(opcion) {
 
             case 1: {
-                cout << "\n--- ZONAS ---\n";
+                cout << MAGENTA<<"\n------------------- ZONAS --------------------\n";
+                cout<<"N°ZONA\tID - Supervisor\t\t\tN° Estaciones\n"<<RESET;
                 for (Zona* z : zonas) {
-                    z->mostrar();
+                    z->mostrarfila();
                 }
+                cout<<MAGENTA<<"----------------------------------------------\n"<<RESET;
                 break;
             }
 
@@ -336,7 +340,7 @@ void Sistema::menu() {
 
                 for (Zona* z : zonas) {
                     if (z->getId() == idz) {
-                        cout << "\n--- ESTACIONES DE ZONA " << idz << " ---\n";
+                        cout << MAGENTA<<"\n--- ESTACIONES DE ZONA " << idz << " ---\n"<<RESET;
                         for (Estacion* e : z->getEstaciones()) {
                             e->mostrar();
                         }
@@ -346,7 +350,7 @@ void Sistema::menu() {
             }
 
             case 3: {
-                cout << "\n--- USUARIOS ---\n";
+                cout << MAGENTA<<"\n--- USUARIOS ---\n"<<RESET;
                 for (Usuario* u : usuarios) {
                     u->imp(); // Tu método imprime todo
                     cout << endl;
@@ -364,7 +368,7 @@ void Sistema::menu() {
                 Usuario* u = new Usuario(nom, ape);
                 usuarios.push_back(u);
 
-                cout << "Usuario registrado correctamente.\n";
+                cout <<VERDE<< "[OK] Usuario "<<u->getID()<<" registrado correctamente.\n"<<RESET;
                 break;
             }
 
@@ -378,33 +382,40 @@ void Sistema::menu() {
             }
 
             case 6: {
-                cout << "\n--- TRANSACCIONES ---\n";
-                for (Transaccion* t : transacciones) {
-                    t->mostrar();
+                cout <<MAGENTA<< "\n--- TRANSACCIONES ---\n"<<RESET;
+                if (transacciones.empty()) {
+                    cout<<AMARILLO<<"[AVISO] NO SE ENCONTRARON TRANSACCIONES"<<endl<<RESET;
+                    break;
                 }
-                break;
+                else {
+                    for (Transaccion* t : transacciones) {
+                        t->mostrar();
+                    }
+                    break;
+                }
+
             }
 
             case 7: {
                 ofstream archivo("transacciones.txt", ios::app);
                 if (!archivo.is_open()) {
-                    cout << "[ERROR] No se pudo abrir el archivo." << endl;
+                    cout <<ROJO<<"[ERROR] No se pudo abrir el archivo." << endl<<RESET;
                 } else {
                     for (Transaccion* t : transacciones) {
                         t->guardarEnArchivo(archivo);
                     }
-                    cout << "Transacciones guardadas en transacciones.txt\n";
+                    cout <<VERDE<<"[OK] Transacciones guardadas en transacciones.txt\n"<<RESET;
                     archivo.close();
                 }
                 break;
             }
 
             case 8:
-                cout << "Saliendo del sistema..." << endl;
+                cout<<ROJO<< "Saliendo del sistema..." << endl<<RESET;
                 break;
 
             default:
-                cout << "Opcion invalida." << endl;
+                cout<<ROJO<<"Opcion invalida." << endl<<RESET;
         }
 
     } while (opcion != 8);

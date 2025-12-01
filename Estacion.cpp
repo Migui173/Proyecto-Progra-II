@@ -1,5 +1,6 @@
 #include "Estacion.h"
 #include <iostream>
+#include "colors.h"
 using namespace std;
 
 // Constructor
@@ -71,15 +72,14 @@ Bicicleta* Estacion::retirarBicicleta(int idx) {
 /* ===== MOSTRAR ===== */
 
 void Estacion::mostrar() {
-    cout << "ESTACION" << endl;
-    cout << "  | ID        : " << id << endl;
+    cout <<CYAN<< "ESTACION" << endl<<RESET;
+    cout <<AMARILLO<<"  | ID        : " << id << endl;
     cout << "  | Nombre    : " << nombre << endl;
-    cout << "  | Latitud   : " << latitud << endl;
-    cout << "  | Longitud  : " << longitud << endl;
+    cout << "  | Ubicación : (" << latitud <<" , "<< longitud <<")"<< endl;
     cout << "  | Capacidad : " << capacidad << endl;
     cout << "  | Ocupadas  : " << bicicletas.size() << endl;
     cout << "  | Electricas: " << getCantElectricas() << endl;
     cout << "  | Mecanicas : " << getCantMecanicas() << endl;
-    cout << "  | Zona      : " << zona <<endl;
-    cout << "-----------------------------------------\n";
+    cout << "  | Zona      : " << zona <<endl<<RESET;
+    cout << MAGENTA <<"-----------------------------------------\n"<<RESET;
 }

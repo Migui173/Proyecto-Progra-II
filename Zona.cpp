@@ -37,6 +37,11 @@ void Zona::mostrar() {
          <<"\n\tN° Estaciones : "<<estaciones.size()<<"\n\n";
 }
 
+void Zona::mostrarfila() {
+    cout<<id<<"\t\t"<<supervisor->getID() + " - " + supervisor->getNombre() + " " + supervisor->getApellido() + "\t\t" <<estaciones.size()<<endl;
+}
+
+
 void Zona::agregarEstacion(Estacion *e) {
     estaciones.push_back(e);
 }

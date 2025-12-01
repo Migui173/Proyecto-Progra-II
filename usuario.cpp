@@ -1,5 +1,6 @@
 #include "usuario.h"
 #include "utils.h"
+#include "colors.h"
 #include <iostream>
 using namespace std;
 
@@ -87,11 +88,11 @@ void Usuario::setZona(int zona){
 // Imprimir
 
 void Usuario::imp(){
-    cout << "USUARIO " << ID << " : \n";
-    cout << "\t| Nombre : " << Nombre << endl;
+    cout << CYAN<<"USUARIO " << ID << " : \n"<<RESET;
+    cout << AMARILLO<<"\t| Nombre : " << Nombre << endl;
     cout << "\t| Apellido : " << Apellido << endl;
     cout << "\t| DNI : " << DNI << endl;
     cout << "\t| Tarjeta : " << TarjetaPago << endl;
     cout << "\t| Es Vecino : " << (EsVecino ? "Si" : "No") << endl;
-    cout << "\t| Zona : " << Zona << endl;
+    cout << "\t| Zona : " << Zona << endl<<RESET;
 }

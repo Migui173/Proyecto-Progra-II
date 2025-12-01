@@ -26,6 +26,7 @@ public:
     void agregarEstacion(Estacion* e);
 
     void mostrar();
+    void mostrarfila();
 };
 
 #endif //PROYECTOPROGRA_ZONA_H
